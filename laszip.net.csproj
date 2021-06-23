@@ -5,8 +5,8 @@
   </Target>
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <AssemblyVersion>2.2.0.1</AssemblyVersion>
-    <FileVersion>2.2.0.1</FileVersion>
+    <AssemblyVersion>2.2.0.3</AssemblyVersion>
+    <FileVersion>2.2.0.3</FileVersion>
     <AssemblyName>laszip.net</AssemblyName>
     <RootNamespace>laszip.net</RootNamespace>
     <OutputType>Library</OutputType>
@@ -14,13 +14,15 @@
   </PropertyGroup>
   <PropertyGroup>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Version>2.2.0.2</Version>
+    <Version>2.2.0.3</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Classes for reading and writing of LAS/LAZ files. Ported from LASzip.</Description>
     <Copyright>Copyright of C# port © 2014-2017 by Shinta &lt;shintadono@googlemail.com&gt;\r\nCopyright © 2005-2014, martin isenburg &lt;martin.isenburg@rapidlasso.com&gt;, rapidlasso - tools to catch reality &lt;http:\\rapidlasso.com&gt;</Copyright>
     <Company>PrimeThought Software Solutions CC</Company>
     <RepositoryUrl>https://github.com/primethought/laszip.net</RepositoryUrl>
     <Authors>shintadono</Authors>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>StrongNameKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Examples\**" />
