@@ -1,125 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if /I &quot;$(ConfigurationName)&quot; == &quot;Release&quot; signtool sign /a /td sha256 /tr http://timestamp.comodoca.com?td=sha256 $(TargetPath)&#xD;&#xA;" />
+  </Target>
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0A6D6401-4779-4517-967E-969020D68742}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>laszip.net</RootNamespace>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <AssemblyVersion>2.2.0.1</AssemblyVersion>
+    <FileVersion>2.2.0.1</FileVersion>
     <AssemblyName>laszip.net</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
-    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
-    <TargetFrameworkProfile />
+    <RootNamespace>laszip.net</RootNamespace>
+    <OutputType>Library</OutputType>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <PropertyGroup>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>StrongNameKey.snk</AssemblyOriginatorKeyFile>
+    <Version>2.2.0.2</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Classes for reading and writing of LAS/LAZ files. Ported from LASzip.</Description>
+    <Copyright>Copyright of C# port © 2014-2017 by Shinta &lt;shintadono@googlemail.com&gt;\r\nCopyright © 2005-2014, martin isenburg &lt;martin.isenburg@rapidlasso.com&gt;, rapidlasso - tools to catch reality &lt;http:\\rapidlasso.com&gt;</Copyright>
+    <Company>PrimeThought Software Solutions CC</Company>
+    <RepositoryUrl>https://github.com/primethought/laszip.net</RepositoryUrl>
+    <Authors>shintadono</Authors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Compile Remove="Examples\**" />
+    <EmbeddedResource Remove="Examples\**" />
+    <None Remove="Examples\**" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ArithmeticBitModel.cs" />
-    <Compile Include="ArithmeticDecoder.cs" />
-    <Compile Include="ArithmeticEncoder.cs" />
-    <Compile Include="ArithmeticModel.cs" />
-    <Compile Include="Consts.cs" />
-    <Compile Include="IntegerCompressor.cs" />
-    <Compile Include="LASitem.cs" />
-    <Compile Include="LASreadItem.cs" />
-    <Compile Include="LASreadItemCompressed.cs" />
-    <Compile Include="LASreadItemCompressed_BYTE_v1.cs" />
-    <Compile Include="LASreadItemCompressed_BYTE_v2.cs" />
-    <Compile Include="LASreadItemCompressed_GPSTIME11_v1.cs" />
-    <Compile Include="LASreadItemCompressed_GPSTIME11_v2.cs" />
-    <Compile Include="LASreadItemCompressed_POINT10_v1.cs" />
-    <Compile Include="LASreadItemCompressed_POINT10_v2.cs" />
-    <Compile Include="LASreadItemCompressed_RGB12_v1.cs" />
-    <Compile Include="LASreadItemCompressed_RGB12_v2.cs" />
-    <Compile Include="LASreadItemCompressed_WAVEPACKET13_v1.cs" />
-    <Compile Include="LASreadItemRaw.cs" />
-    <Compile Include="LASreadItemRaw_BYTE.cs" />
-    <Compile Include="LASreadItemRaw_GPSTIME11.cs" />
-    <Compile Include="LASreadItemRaw_POINT10.cs" />
-    <Compile Include="LASreadItemRaw_POINT14.cs" />
-    <Compile Include="LASreadItemRaw_RGB12.cs" />
-    <Compile Include="LASreadItemRaw_RGBNIR14.cs" />
-    <Compile Include="LASreadItemRaw_WAVEPACKET13.cs" />
-    <Compile Include="LASreadPoint.cs" />
-    <Compile Include="LASwriteItem.cs" />
-    <Compile Include="LASwriteItemCompressed.cs" />
-    <Compile Include="LASwriteItemCompressed_BYTE_v2.cs" />
-    <Compile Include="LASwriteItemCompressed_GPSTIME11_v2.cs" />
-    <Compile Include="LASwriteItemCompressed_POINT10_v2.cs" />
-    <Compile Include="LASwriteItemCompressed_RGB12_v2.cs" />
-    <Compile Include="LASwriteItemCompressed_WAVEPACKET13_v1.cs" />
-    <Compile Include="LASwriteItemRaw.cs" />
-    <Compile Include="LASwriteItemRaw_BYTE.cs" />
-    <Compile Include="LASwriteItemRaw_GPSTIME11.cs" />
-    <Compile Include="LASwriteItemRaw_POINT10.cs" />
-    <Compile Include="LASwriteItemRaw_POINT14.cs" />
-    <Compile Include="LASwriteItemRaw_RGB12.cs" />
-    <Compile Include="LASwriteItemRaw_RGBNIR14.cs" />
-    <Compile Include="LASwriteItemRaw_WAVEPACKET13.cs" />
-    <Compile Include="LASwritePoint.cs" />
-    <Compile Include="LASzip.cs" />
-    <Compile Include="Laszip_Common_v1.cs" />
-    <Compile Include="Laszip_Common_v2.cs" />
-    <Compile Include="laszip_dll.cs" />
-    <Compile Include="laszip_geokey.cs" />
-    <Compile Include="laszip_header.cs" />
-    <Compile Include="laszip_point.cs" />
-    <Compile Include="laszip_vlr.cs" />
-    <Compile Include="MyDefs.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StreamingMedian5.cs" />
-    <Compile Include="U32I32F32.cs" />
-    <Compile Include="U64I64F64.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="LICENSE" />
-    <None Include="README.md" />
-    <None Include="StrongNameKey.snk" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
 </Project>
